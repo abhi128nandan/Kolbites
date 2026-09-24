@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KolBites — Calcutta Culinary | Rolls, Chowmin & Cha in Sector V, Kolkata</title>
+  <meta name="description" content="KolBites serves Kolkata street favourites — kathi rolls, KolBites Special Chowmin, Mughlai paratha, chilli chicken and cha — in Sector V. Order online or call 98304 55588.">
+  <meta name="theme-color" content="#2B1712">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <!-- Fonts: Cinzel (display, matches the banner lettering) + Hind Siliguri (text; Indian-designed, Bengali-ready).
+       WordPress: enqueue this URL with wp_enqueue_style('kolbites-fonts', …) — see wordpress/functions-snippet.php -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/kolbites.css">
+
+  <!-- Restaurant structured data (WordPress: output from wp_head or an SEO plugin) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "KolBites",
+    "slogan": "Dash of Kolkata ... in every bite!",
+    "servesCuisine": ["Bengali street food", "Indo-Chinese", "Rolls"],
+    "priceRange": "₹",
+    "telephone": "+91-9830455588",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "AQ Block, Sector V, Udayan Pally, Mahishbathan",
+      "addressLocality": "Kolkata",
+      "postalCode": "700102",
+      "addressRegion": "West Bengal",
+      "addressCountry": "IN"
+    },
+    "hasMenu": "#menu"
+  }
+  </script>
+
+  <!-- Runtime config. In WordPress, delete this block and use wp_localize_script() instead. -->
+  <script>
+    window.KOLBITES_CONFIG = {
+      restaurantPhone: "9830455588",
+      orderEndpoint: "",        // "/wp-json/kolbites/v1/order" once the proxy is installed
+      orderStatusEndpoint: "",  // "/wp-json/kolbites/v1/order-status/"
+      menuStatusEndpoint: "",   // "/wp-json/kolbites/v1/menu-status"
+      hostedOrderingUrl: ""     // Optional Pet Pooja-hosted ordering link
+    };
+  </script>
+</head>
+<body class="kb-site">
+  <a class="kb-skip" href="#menu">Skip to menu</a>
+
+  <!-- ============================================================
+       WP: template-parts/header.php
+       ============================================================ -->
+  <header class="kb-header" data-kb-header>
+    <div class="kb-header__inner kb-wrap">
+      <a class="kb-brand" href="#top" aria-label="KolBites — Calcutta Culinary, home">
+        <img class="kb-brand__logo" src="assets/img/kolbites-logo.png" alt="" width="52" height="52">
+        <span class="kb-brand__text">
+          <span class="kb-brand__name">KolBites</span>
+          <span class="kb-brand__tag">Calcutta Culinary</span>
+        </span>
+      </a>
+
+      <nav class="kb-nav" aria-label="Main" data-kb-nav>
+        <ul class="kb-nav__list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="kb-header__actions">
+        <a class="kb-btn kb-btn--taxi kb-header__order" href="tel:+919830455588">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+          <span class="kb-header__order-label">Order Now</span>
+          <span class="kb-header__order-phone">98304 55588</span>
+        </a>
+        <button type="button" class="kb-iconbtn" data-kb-open-cart aria-label="Open cart">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 5h2l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h7.7a1.5 1.5 0 0 0 1.4-1.1L20.5 9H7"/><circle cx="10" cy="20" r="1.3" fill="currentColor"/><circle cx="17" cy="20" r="1.3" fill="currentColor"/></svg>
+          <span class="kb-badge" data-kb-cart-count hidden>0</span>
+        </button>
+        <button type="button" class="kb-iconbtn kb-nav-toggle" data-kb-nav-toggle aria-expanded="false" aria-label="Menu">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============================================================
+         WP: template-parts/hero.php   (Gutenberg: Cover block)
+         Background: KolBites Banner. The supplied banner has the tagline
+         baked into the image, so it is softened here and the tagline is
+         set as live text. For best results export a text-free version
+         and swap it into --kb-hero-image.
+         ============================================================ -->
+    <section class="kb-hero" aria-labelledby="hero-title">
+      <div class="kb-hero__bg" role="img" aria-label="Evening at a Kolkata street-side café"></div>
+      <div class="kb-hero__content kb-wrap">
+        <h1 class="kb-hero__title" id="hero-title">
+          <span class="kb-hero__line1">Dash of Kolkata</span>
+          <span class="kb-hero__line2"><span class="kb-hero__dots" aria-hidden="true"><i>.</i><i>.</i><i>.</i><i>.</i><i>.</i></span><span class="kb-visually-hidden"> </span>in every bite!</span>
+        </h1>
+        <p class="kb-hero__sub">Kathi rolls, chowmin, Mughlai paratha and a cup of cha — cooked the way the city likes it, in Sector V.</p>
+        <div class="kb-hero__ctas">
+          <a class="kb-btn kb-btn--taxi kb-btn--lg" href="#menu" data-kb-order-online>Order Online</a>
+          <a class="kb-btn kb-btn--outline-light kb-btn--lg" href="tel:+919830455588">Call 98304 55588</a>
+        </div>
+        <p class="kb-hero__address">AQ Block, Sector V, Udayan Pally, Mahishbathan, Kolkata 700102</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WP: template-parts/menu.php   (menu is rendered by kolbites-app.js
+         from KOLBITES_MENU; for server-side SEO you can instead loop the
+         same data in PHP and keep the data-kb-* attributes)
+         ============================================================ -->
+    <section class="kb-menu" id="menu" aria-labelledby="menu-title">
+      <div class="kb-wrap kb-menu__wrap">
+        <div class="kb-menu__head">
+          <h2 class="kb-section-title" id="menu-title">The menu</h2>
+          <p class="kb-menu__intro">Everything on our printed card, ready to order. Tap Add, then check out from your cart.</p>
+          <div class="kb-menu__tools">
+            <button type="button" class="kb-toggle" data-kb-diet-filter aria-pressed="false">
+              <span class="kb-diet kb-diet--veg" aria-hidden="true"></span> Veg only
+            </button>
+            <p class="kb-legend">
+              <span><span class="kb-diet kb-diet--veg" aria-hidden="true"></span> Veg</span>
+              <span><span class="kb-diet kb-diet--egg" aria-hidden="true"></span> Egg</span>
+              <span><span class="kb-diet kb-diet--nonveg" aria-hidden="true"></span> Non-veg</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="kb-menu__layout">
+          <nav class="kb-catnav" aria-label="Menu categories">
+            <ul class="kb-catnav__list" data-kb-category-nav></ul>
+          </nav>
+
+          <div class="kb-card">
+            <div class="kb-card__ornament kb-card__ornament--tl" aria-hidden="true"></div>
+            <div class="kb-card__ornament kb-card__ornament--br" aria-hidden="true"></div>
+            <div class="kb-card__grid" data-kb-menu-list>
+              <noscript><p>Our online menu needs JavaScript. Call 98304 55588 to order.</p></noscript>
+            </div>
+            <p class="kb-card__foot">Mineral water and cold drinks are sold at MRP at the counter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WP: template-parts/about.php   (Gutenberg: Media & Text block)
+         ============================================================ -->
+    <section class="kb-about" id="about" aria-labelledby="about-title">
+      <div class="kb-wrap kb-about__grid">
+        <div class="kb-about__text">
+          <h2 class="kb-section-title" id="about-title">About us</h2>
+          <p class="kb-lede">KolBites is a Calcutta kitchen for the office crowd, the night-shift crowd and everyone in between.</p>
+          <p>Our menu is the food this city queues up for on its pavements: egg and chicken rolls wrapped hot off the tawa, Chinese-Bengali chowmin tossed the Tangra way, Mughlai paratha, chicken kasha, and singara with a cup of cha at the end of it.</p>
+          <p>Our logo carries the things that make Kolkata feel like home — the Howrah Bridge, the yellow Ambassador taxi — and we try to cook with the same sense of place. Honest portions, fair prices, and the flavour you remember.</p>
+          <a class="kb-btn kb-btn--maroon" href="#menu">See the menu</a>
+        </div>
+        <figure class="kb-about__plates">
+          <img src="assets/img/dish-rolls.jpg" alt="Chicken rolls on a black plate" loading="lazy" width="600" height="260">
+          <img src="assets/img/dish-egg-devil.jpg" alt="Egg devil, halved, with onion and chilli" loading="lazy" width="480" height="285">
+          <img src="assets/img/dish-lollipop.jpg" alt="Chicken lollipops with dipping sauce" loading="lazy" width="465" height="335">
+          <img src="assets/img/dish-singara.jpg" alt="Singara with green chutney" loading="lazy" width="490" height="270">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WP: template-parts/contact.php
+         ============================================================ -->
+    <section class="kb-contact" id="contact" aria-labelledby="contact-title">
+      <div class="kb-wrap kb-contact__grid">
+        <div>
+          <h2 class="kb-section-title kb-section-title--light" id="contact-title">Visit or call</h2>
+          <address class="kb-contact__address">
+            AQ Block, Sector V, Udayan Pally,<br>
+            Mahishbathan, Kolkata 700102
+          </address>
+          <p class="kb-contact__phone"><a href="tel:+919830455588">98304 55588</a></p>
+          <p class="kb-contact__note">Call for today's hours and delivery area.</p>
+          <!-- WP: replace the note above with opening hours from Theme Options / ACF once confirmed. -->
+        </div>
+        <div class="kb-contact__actions">
+          <a class="kb-btn kb-btn--taxi kb-btn--lg" href="tel:+919830455588">Call to order</a>
+          <a class="kb-btn kb-btn--outline-light kb-btn--lg" href="https://www.google.com/maps/search/?api=1&query=AQ+Block+Sector+V+Udayan+Pally+Mahishbathan+Kolkata+700102" target="_blank" rel="noopener">Get directions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       WP: footer.php
+       ============================================================ -->
+  <footer class="kb-footer">
+    <div class="kb-wrap kb-footer__grid">
+      <div class="kb-footer__brand">
+        <img src="assets/img/kolbites-logo.png" alt="KolBites — Calcutta Culinary" width="96" height="96" loading="lazy">
+        <p>Dash of Kolkata ... in every bite!</p>
+      </div>
+      <div>
+        <h2 class="kb-footer__heading">Find us</h2>
+        <address>AQ Block, Sector V, Udayan Pally, Mahishbathan, Kolkata- 700 102</address>
+      </div>
+      <div>
+        <h2 class="kb-footer__heading">Order now</h2>
+        <p><a class="kb-footer__phone" href="tel:+919830455588">98304 55588</a></p>
+      </div>
+      <div>
+        <h2 class="kb-footer__heading">Follow</h2>
+        <!-- WP: replace href="#" with real profile URLs (Customizer / Theme Options) -->
+        <ul class="kb-social">
+          <li><a href="#" aria-label="KolBites on Facebook"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4a20 20 0 0 0-2.2-.1c-2.2 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg></a></li>
+          <li><a href="#" aria-label="KolBites on Instagram"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></svg></a></li>
+          <li><a href="#" aria-label="KolBites on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3zm0 16.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3A7.3 7.3 0 1 1 12 19.3zm4-5.4c-.2-.1-1.3-.7-1.5-.7s-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6 6 0 0 1-3-2.6c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.4-.4-.5-.4h-.4a.8.8 0 0 0-.6.3 2.5 2.5 0 0 0-.8 1.9 4.4 4.4 0 0 0 .9 2.3 10 10 0 0 0 3.8 3.4c1.4.6 2 .6 2.7.5.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1l-.4-.2z"/></svg></a></li>
+          <li><a href="#" aria-label="KolBites on YouTube"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/></svg></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="kb-footer__legal kb-wrap">© <span data-kb-year>2026</span> KolBites — Calcutta Culinary</p>
+  </footer>
+
+  <!-- ============================================================
+       Commerce UI (WP: template-parts/cart.php — include once in footer)
+       ============================================================ -->
+
+  <!-- Mobile cart bar -->
+  <button type="button" class="kb-cartbar" data-kb-cartbar data-kb-open-cart hidden>
+    <span data-kb-cartbar-label>0 items</span>
+    <span class="kb-cartbar__cta">View cart</span>
+  </button>
+
+  <!-- Cart drawer -->
+  <aside class="kb-cart" data-kb-cart aria-hidden="true" aria-labelledby="cart-title">
+    <div class="kb-cart__scrim" data-kb-close-cart></div>
+    <div class="kb-cart__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="kb-cart__head">
+        <h2 id="cart-title">Your order</h2>
+        <button type="button" class="kb-iconbtn" data-kb-close-cart aria-label="Close cart">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="kb-cart__body" data-kb-cart-lines></div>
+      <div class="kb-cart__foot" data-kb-cart-footer hidden>
+        <p class="kb-cart__total"><span>Total</span><span data-kb-cart-total>₹0</span></p>
+        <p class="kb-cart__hint">Taxes and delivery charges, if any, are confirmed when we accept your order.</p>
+        <button type="button" class="kb-btn kb-btn--taxi kb-btn--block" data-kb-checkout-open>Checkout</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Option chooser (Dry / Gravy) -->
+  <dialog class="kb-dialog kb-dialog--small" data-kb-option-dialog aria-labelledby="option-title">
+    <h2 class="kb-dialog__title" id="option-title" data-kb-option-title></h2>
+    <p class="kb-dialog__label" data-kb-option-label></p>
+    <div class="kb-dialog__choices" data-kb-option-choices></div>
+    <button type="button" class="kb-linkbtn" data-kb-option-cancel>Cancel</button>
+  </dialog>
+
+  <!-- Checkout -->
+  <dialog class="kb-dialog" data-kb-checkout aria-labelledby="checkout-title">
+    <form class="kb-checkout" data-kb-checkout-form novalidate>
+      <div class="kb-dialog__head">
+        <h2 class="kb-dialog__title" id="checkout-title">Checkout</h2>
+        <button type="button" class="kb-iconbtn" data-kb-close-checkout aria-label="Close checkout">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <ul class="kb-summary" data-kb-checkout-summary></ul>
+
+      <fieldset class="kb-field kb-field--radio">
+        <legend>How would you like it?</legend>
+        <label><input type="radio" name="orderType" value="pickup" checked> Pick up</label>
+        <label><input type="radio" name="orderType" value="delivery"> Delivery</label>
+      </fieldset>
+      <label class="kb-field">Name
+        <input name="name" type="text" autocomplete="name" required>
+      </label>
+      <label class="kb-field">Mobile number
+        <input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile" required>
+      </label>
+      <label class="kb-field" data-kb-address-field hidden>Delivery address
+        <textarea name="address" rows="3" autocomplete="street-address"></textarea>
+      </label>
+      <label class="kb-field">Notes for the kitchen <span class="kb-field__opt">optional</span>
+        <input name="notes" type="text" placeholder="Less spicy, extra onion…">
+      </label>
+      <fieldset class="kb-field kb-field--radio">
+        <legend>Payment</legend>
+        <label><input type="radio" name="payment" value="pay_on_collection" checked> Pay on pickup / delivery</label>
+        <!-- WP/POS: add an online payment option here once a gateway is set up in Pet Pooja -->
+      </fieldset>
+      <button type="submit" class="kb-btn kb-btn--taxi kb-btn--block">Place order</button>
+    </form>
+    <div class="kb-result" data-kb-checkout-result hidden aria-live="polite"></div>
+  </dialog>
+
+  <div class="kb-toast" data-kb-toast role="status" aria-live="polite"></div>
+
+  <!-- Scripts. WordPress: enqueue in this order (see wordpress/functions-snippet.php) -->
+  <script src="assets/js/kolbites-menu-data.js"></script>
+  <script src="assets/js/kolbites-pos-adapter.js"></script>
+  <script src="assets/js/kolbites-app.js"></script>
+</body>
+</html>

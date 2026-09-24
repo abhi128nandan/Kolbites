@@ -1,0 +1,131 @@
+/**
+ * KolBites — Menu data
+ * ------------------------------------------------------------------
+ * Transcribed from the printed KolBites menu. Prices in INR.
+ *
+ * Fields
+ *   id      Stable website ID. Never change once live (cart + analytics use it).
+ *   posId   Pet Pooja item ID. Fill in from the Pet Pooja menu export /
+ *           "fetch menu" response so orders map 1:1 to POS items.
+ *   diet    "veg" | "egg" | "nonveg"  (drives the veg/non-veg mark + filter)
+ *   price   Number, or null for items sold at MRP (not orderable online).
+ *   options Optional choice the guest must make (e.g. Dry / Gravy). Map each
+ *           choice to its Pet Pooja variation ID in `posVariationId`.
+ *
+ * In WordPress this object can be replaced at runtime: pass the same shape via
+ * wp_localize_script('kolbites-app', 'KOLBITES_MENU', $menu) — see
+ * wordpress/functions-snippet.php — or hydrate it from Pet Pooja's menu API
+ * through KolBitesPOS.syncMenu().
+ */
+window.KOLBITES_MENU = window.KOLBITES_MENU || {
+  currency: "₹",
+  categories: [
+    { id: "cha", name: "Cha", items: [
+      { id: "boro-cha", name: "Boro Cha", price: 20, diet: "veg", posId: null },
+      { id: "choto-cha", name: "Choto Cha", price: 15, diet: "veg", posId: null },
+    ]},
+    { id: "snacks", name: "Snacks", items: [
+      { id: "singara", name: "Singara", price: 10, diet: "veg", posId: null },
+      { id: "chatur-kachuri", name: "Chatur Kachuri", price: 10, diet: "veg", posId: null },
+      { id: "koraishutir-kachuri", name: "Koraishutir Kachuri", price: 20, diet: "veg", posId: null },
+    ]},
+    { id: "starters", name: "Starters", items: [
+      { id: "veg-pakoda", name: "Veg Pakoda", note: "6 pcs", price: 120, diet: "veg", posId: null },
+      { id: "paneer-pakoda", name: "Paneer Pakoda", note: "6 pcs", price: 180, diet: "veg", posId: null },
+      { id: "french-fries", name: "French Fries", price: 100, diet: "veg", posId: null },
+      { id: "masala-french-fries", name: "Masala French Fries", price: 130, diet: "veg", posId: null },
+      { id: "egg-devil", name: "Egg Devil", price: 60, diet: "egg", posId: null },
+      { id: "chicken-pakoda", name: "Chicken Pakoda", note: "6 pcs", price: 180, diet: "nonveg", posId: null },
+      { id: "chicken-lolipop", name: "Chicken Lolipop", note: "4 pcs", price: 160, diet: "nonveg", posId: null },
+      { id: "drums-of-heaven", name: "Drums of Heaven", price: 180, diet: "nonveg", posId: null },
+    ]},
+    { id: "soups", name: "Soups", items: [
+      { id: "veg-clear-soup", name: "Veg Clear Soup", price: 140, diet: "veg", posId: null },
+      { id: "manchow-veg-soup", name: "Manchow Veg Soup", price: 120, diet: "veg", posId: null },
+      { id: "egg-clear-soup", name: "Egg Clear Soup", price: 160, diet: "egg", posId: null },
+      { id: "manchow-egg-soup", name: "Manchow Egg Soup", price: 140, diet: "egg", posId: null },
+      { id: "chicken-clear-soup", name: "Chicken Clear Soup", price: 200, diet: "nonveg", posId: null },
+      { id: "egg-chicken-clear-soup", name: "Egg Chicken Clear Soup", price: 220, diet: "nonveg", posId: null },
+      { id: "manchow-chicken-soup", name: "Manchow Chicken Soup", price: 180, diet: "nonveg", posId: null },
+      { id: "manchow-egg-chicken-soup", name: "Manchow Egg Chicken Soup", price: 220, diet: "nonveg", posId: null },
+    ]},
+    { id: "rolls", name: "Rolls", items: [
+      { id: "veg-roll", name: "Veg Roll", price: 50, diet: "veg", posId: null },
+      { id: "egg-roll", name: "Egg Roll", price: 60, diet: "egg", posId: null },
+      { id: "double-egg-roll", name: "Double Egg Roll", price: 70, diet: "egg", posId: null },
+      { id: "chicken-roll", name: "Chicken Roll", price: 90, diet: "nonveg", posId: null },
+      { id: "double-chicken-roll", name: "Double Chicken Roll", price: 140, diet: "nonveg", posId: null },
+      { id: "egg-chicken-roll", name: "Egg Chicken Roll", price: 100, diet: "nonveg", posId: null },
+      { id: "paneer-roll", name: "Paneer Roll", price: 90, diet: "veg", posId: null },
+      { id: "double-paneer-roll", name: "Double Paneer Roll", price: 160, diet: "veg", posId: null },
+      { id: "double-egg-chicken-roll", name: "Double Egg Chicken Roll", price: 130, diet: "nonveg", posId: null },
+      { id: "double-egg-double-chicken-roll", name: "Double Egg Double Chicken Roll", price: 170, diet: "nonveg", posId: null },
+    ]},
+    { id: "paratha", name: "Paratha", items: [
+      { id: "aloo-paratha-atta", name: "Aloo Paratha (Atta)", price: 30, diet: "veg", posId: null },
+      { id: "aloo-paratha-maida", name: "Aloo Paratha (Maida)", price: 40, diet: "veg", posId: null },
+      { id: "lachcha-paratha", name: "Lachcha Paratha", price: 30, diet: "veg", posId: null },
+      { id: "mughlai-paratha", name: "Mughlai Paratha", price: 100, diet: "egg", posId: null },
+      { id: "chicken-mughlai-paratha", name: "Chicken Mughlai Paratha", price: 130, diet: "nonveg", posId: null },
+    ]},
+    { id: "fried-rice", name: "Fried Rice", items: [
+      { id: "veg-fried-rice", name: "Veg Fried Rice", price: 90, diet: "veg", posId: null },
+      { id: "veg-schezwan-fried-rice", name: "Veg Schezwan Fried Rice", price: 100, diet: "veg", posId: null },
+      { id: "paneer-fried-rice", name: "Paneer Fried Rice", price: 120, diet: "veg", posId: null },
+      { id: "paneer-schezwan-fried-rice", name: "Paneer Schezwan Fried Rice", price: 130, diet: "veg", posId: null },
+      { id: "egg-fried-rice", name: "Egg Fried Rice", price: 100, diet: "egg", posId: null },
+      { id: "egg-schezwan-fried-rice", name: "Egg Schezwan Fried Rice", price: 110, diet: "egg", posId: null },
+      { id: "chicken-fried-rice", name: "Chicken Fried Rice", price: 120, diet: "nonveg", posId: null },
+      { id: "chicken-schezwan-fried-rice", name: "Chicken Schezwan Fried Rice", price: 130, diet: "nonveg", posId: null },
+      { id: "egg-chicken-fried-rice", name: "Egg Chicken Fried Rice", price: 150, diet: "nonveg", posId: null },
+      { id: "egg-chicken-schezwan-fried-rice", name: "Egg Chicken Schezwan Fried Rice", price: 160, diet: "nonveg", posId: null },
+    ]},
+    { id: "noodles", name: "Noodles", items: [
+      { id: "veg-hakka-noodles", name: "Veg Hakka Noodles", price: 100, diet: "veg", posId: null },
+      { id: "veg-schezwan-noodles", name: "Veg Schezwan Noodles", price: 110, diet: "veg", posId: null },
+      { id: "paneer-hakka-noodles", name: "Paneer Hakka Noodles", price: 130, diet: "veg", posId: null },
+      { id: "paneer-schezwan-noodles", name: "Paneer Schezwan Noodles", price: 140, diet: "veg", posId: null },
+      { id: "egg-hakka-noodles", name: "Egg Hakka Noodles", price: 120, diet: "egg", posId: null },
+      { id: "egg-schezwan-noodles", name: "Egg Schezwan Noodles", price: 130, diet: "egg", posId: null },
+      { id: "chicken-hakka-noodles", name: "Chicken Hakka Noodles", price: 140, diet: "nonveg", posId: null },
+      { id: "chicken-schezwan-noodles", name: "Chicken Schezwan Noodles", price: 150, diet: "nonveg", posId: null },
+      { id: "egg-chicken-hakka-noodles", name: "Egg Chicken Hakka Noodles", price: 150, diet: "nonveg", posId: null },
+      { id: "egg-chicken-schezwan-noodles", name: "Egg Chicken Schezwan Noodles", price: 160, diet: "nonveg", posId: null },
+      { id: "kolbites-special-veg-chowmin", name: "KolBites Special Veg Chowmin", price: 120, diet: "veg", posId: null, signature: true },
+      { id: "kolbites-special-paneer-chowmin", name: "KolBites Special Paneer Chowmin", price: 140, diet: "veg", posId: null, signature: true },
+      { id: "kolbites-special-egg-chowmin", name: "KolBites Special Egg Chowmin", price: 130, diet: "egg", posId: null, signature: true },
+      { id: "kolbites-special-egg-chicken-chowmin", name: "KolBites Special Egg Chicken Chowmin", price: 150, diet: "nonveg", posId: null, signature: true },
+    ]},
+    { id: "main-course", name: "Main Course", items: [
+      { id: "veg-manchurian", name: "Veg Manchurian", note: "6 pcs", price: 150, diet: "veg", posId: null },
+      { id: "kadhai-paneer", name: "Kadhai Paneer", price: 200, diet: "veg", posId: null },
+      { id: "chilli-paneer", name: "Chilli Paneer", note: "6 pcs", price: 190, diet: "veg", posId: null,
+        options: { label: "Style", choices: [{ id: "dry", name: "Dry", posVariationId: null }, { id: "gravy", name: "Gravy", posVariationId: null }] } },
+      { id: "chicken-manchurian", name: "Chicken Manchurian", note: "6 pcs", price: 190, diet: "nonveg", posId: null },
+      { id: "chilli-chicken", name: "Chilli Chicken", note: "6 pcs", price: 190, diet: "nonveg", posId: null,
+        options: { label: "Style", choices: [{ id: "dry", name: "Dry", posVariationId: null }, { id: "gravy", name: "Gravy", posVariationId: null }] } },
+      { id: "chicken-kasha", name: "Chicken Kasha", note: "4 pcs", price: 160, diet: "nonveg", posId: null },
+    ]},
+    { id: "combos", name: "Combos", items: [
+      { id: "combo-vfr-chilli-paneer", name: "Veg Fried Rice & Chilli Paneer", price: 180, diet: "veg", posId: null },
+      { id: "combo-vfr-veg-manchurian", name: "Veg Fried Rice & Veg Manchurian", note: "3 pcs", price: 160, diet: "veg", posId: null },
+      { id: "combo-vhn-chilli-paneer", name: "Veg Hakka Noodles & Chilli Paneer", price: 180, diet: "veg", posId: null },
+      { id: "combo-vhn-veg-manchurian", name: "Veg Hakka Noodles & Veg Manchurian", note: "3 pcs", price: 160, diet: "veg", posId: null },
+      { id: "combo-efr-chilli-chicken", name: "Egg Fried Rice & Chilli Chicken", note: "3 pcs", price: 180, diet: "nonveg", posId: null },
+      { id: "combo-efr-chicken-manchurian", name: "Egg Fried Rice & Chicken Manchurian", note: "3 pcs", price: 180, diet: "nonveg", posId: null },
+      { id: "combo-ehn-chilli-chicken", name: "Egg Hakka Noodles & Chilli Chicken", note: "3 pcs", price: 180, diet: "nonveg", posId: null },
+      { id: "combo-ehn-chicken-manchurian", name: "Egg Hakka Noodles & Chicken Manchurian", note: "3 pcs", price: 180, diet: "nonveg", posId: null },
+      { id: "combo-lp-kadhai-paneer", name: "Lachcha Paratha & Kadhai Paneer", price: 170, diet: "veg", posId: null },
+      { id: "combo-lp-chicken-kosha", name: "Lachcha Paratha & Chicken Kosha", note: "2 pcs", price: 180, diet: "nonveg", posId: null },
+    ]},
+    { id: "salad", name: "Salad", items: [
+      { id: "green-salad", name: "Green Salad", price: 70, diet: "veg", posId: null },
+      { id: "onion-salad", name: "Onion Salad", price: 80, diet: "veg", posId: null },
+    ]},
+    { id: "drinks", name: "Drinks", items: [
+      { id: "masala-cold-drinks", name: "Masala Cold Drinks", price: 40, diet: "veg", posId: null },
+      { id: "mineral-water-1l", name: "Mineral Water (1 ltr)", price: null, priceLabel: "At MRP", diet: "veg", posId: null },
+      { id: "cold-drinks", name: "Cold Drinks", price: null, priceLabel: "At MRP", diet: "veg", posId: null },
+    ]},
+  ],
+};

@@ -1,0 +1,23 @@
+{
+  "name": "kolbites-website",
+  "version": "1.0.0",
+  "description": "KolBites — Calcutta Culinary · Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve . -l 3000",
+    "start": "serve . -l 3000",
+    "serve": "serve . -l 3000"
+  },
+  "keywords": [
+    "restaurant",
+    "kolkata",
+    "kolbites",
+    "menu",
+    "ordering"
+  ],
+  "author": "KolBites",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

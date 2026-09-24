@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Archives & Temporary files
+*.zip
+.DS_Store
+Thumbs.db
+
+# Editor configs
+.vscode/
+.idea/
